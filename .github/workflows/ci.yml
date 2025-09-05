@@ -22,12 +22,13 @@ jobs:
 
       - name: Build & run tests with Maven
         run: mvn clean verify
+        working-directory: back
 
       - name: Upload Jacoco coverage report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: target/site/jacoco/index.html
+          path: back/target/site/jacoco
 
   frontend:
     name: Frontend Tests with Coverage
@@ -44,14 +45,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: frontend
+        working-directory: front
 
       - name: Run tests with coverage
         run: npm test -- --coverage
-        working-directory: frontend
+        working-directory: front
 
       - name: Upload frontend coverage report
         uses: actions/upload-artifact@v4
         with:
           name: frontend-coverage
-          path: frontend/coverage
+          path: front/coverage
