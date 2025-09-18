@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Récupération du code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Connecter Docker à Docker Hub
+      # Connexion à Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -26,13 +27,19 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./back
+          file: ./back/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-back:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-back:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-back:${{ github.sha }}
 
       # Build et push frontend
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
           context: ./front
+          file: ./front/Dockerfile
           push: true
-          tags: ${{
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-front:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-front:${{ github.sha }}
