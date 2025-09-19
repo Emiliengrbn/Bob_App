@@ -15,9 +15,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Run Angular tests with coverage
+        run: npm run test
+        working-directory: front
+
       - name: Build and analyze with Sonar
         uses: SonarSource/sonarcloud-github-action@v3
         with: 
           projectBaseDir: ./front
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+          
