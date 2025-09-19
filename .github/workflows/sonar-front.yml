@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build and analyze with Sonar
-        uses: SonarSource/sonarcloud-github-actions@v3
+        uses: SonarSource/sonarcloud-github-action@v3
         with: 
           projectBaseDir: ./front
         env:
