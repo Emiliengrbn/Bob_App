@@ -15,10 +15,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-         projectBaseDir: frontend
+      - name: Build and analyze with Sonar
+        uses: SonarSource/sonarcloud-github-actions@v3
+        with: 
+          projectBaseDir: ./front
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
-          SONAR_HOST_URL: https://sonarcloud.io
