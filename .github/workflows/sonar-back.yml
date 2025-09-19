@@ -35,6 +35,10 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
+      - name: Run Maven test
+        run: mvn clean verify
+        working-directory: back
+
       - name: Build and analyze with Sonar
         uses: SonarSource/sonarcloud-github-actions@v3
         with: 
