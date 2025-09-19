@@ -15,6 +15,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.15.1'
+          cache: 'npm'
+          cache-dependency-path: front/package-lock.json
+
       - name: Run Angular tests with coverage
         run: npm run test
         working-directory: front
