@@ -36,7 +36,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build and analyze with Sonar
-        working-directory: back
+        uses: SonarSource/sonarcloud-github-actions@v3
+        with: 
+          projectBaseDir: ./back
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACK }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Emiliengrbn_Bob_App_Back
