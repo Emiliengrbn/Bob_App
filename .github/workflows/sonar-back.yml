@@ -38,3 +38,10 @@ jobs:
       - name: Run Maven test
         run: mvn clean verify
         working-directory: back
+
+      - name: Build and analyze with Sonar
+        uses: SonarSource/sonarcloud-github-action@v3
+        with: 
+          projectBaseDir: ./back
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACK }}
