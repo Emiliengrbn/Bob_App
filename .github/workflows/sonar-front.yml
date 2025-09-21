@@ -2,9 +2,15 @@ name: SonarQube Front
 on:
   push:
     branches:
-      - main
+      - 'feature/**'
+      - 'develop'
+      - 'release/**'
+      - 'hotfix/**'
+    paths:
+      - 'front/**'
   pull_request:
-    types: [opened, synchronize, reopened]
+    paths:
+      - 'front/**' 
 
 jobs:
   sonarqube:
