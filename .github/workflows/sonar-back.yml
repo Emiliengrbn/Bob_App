@@ -2,9 +2,15 @@ name: SonarQube Back
 on:
   push:
     branches:
-      - main
+      - 'feature/**'
+      - 'develop'
+      - 'release/**'
+      - 'hotfix/**'
+    paths:
+      - 'back/**'
   pull_request:
-    types: [opened, synchronize, reopened]
+    paths:
+      - 'back/**' 
 
 jobs:
   build:
